@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leads Dashboard — {{ business_name }}</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #6C63FF;
+      --bg: #0d0d1a;
+      --surface: #1a1a2e;
+      --surface2: #16213e;
+      --text: #e8e8f0;
+      --muted: #8888aa;
+      --border: rgba(108,99,255,.15);
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar {
+      width: 240px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 1.75rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+    }
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6C63FF, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .sidebar-nav { display: flex; flex-direction: column; gap: .5rem; }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .65rem .85rem;
+      border-radius: 10px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9rem;
+      transition: background .2s, color .2s;
+    }
+    .nav-item.active, .nav-item:hover {
+      background: rgba(108,99,255,.12);
+      color: var(--text);
+    }
+    .nav-item.active { color: #a78bfa; }
+    .logout {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .65rem .85rem;
+      color: var(--muted);
+      font-size: .875rem;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background .2s, color .2s;
+    }
+    .logout:hover { background: rgba(255,80,80,.1); color: #ff8080; }
+
+    /* Main */
+    .main {
+      margin-left: 240px;
+      flex: 1;
+      padding: 2.5rem;
+    }
+
+    /* Header */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    .page-header h1 { font-size: 1.6rem; font-weight: 800; }
+    .page-header p { color: var(--muted); font-size: .9rem; margin-top: .2rem; }
+    .btn-export {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .6rem 1.25rem;
+      background: rgba(108,99,255,.15);
+      border: 1px solid rgba(108,99,255,.3);
+      border-radius: 10px;
+      color: #a78bfa;
+      font-size: .875rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-export:hover { background: rgba(108,99,255,.25); }
+
+    /* Stats */
+    .stats { display: flex; gap: 1rem; margin-bottom: 2rem; }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      flex: 1;
+    }
+    .stat-label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+    .stat-value { font-size: 2rem; font-weight: 800; margin-top: .2rem; }
+    .stat-value.purple { color: #a78bfa; }
+
+    /* Search */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.25rem;
+    }
+    .search-bar input {
+      flex: 1;
+      padding: .7rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .search-bar input:focus { border-color: var(--purple); }
+    .search-bar input::placeholder { color: var(--muted); }
+
+    /* Table */
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      background: rgba(108,99,255,.04);
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(108,99,255,.05); }
+    td {
+      padding: 1rem 1.25rem;
+      font-size: .875rem;
+      vertical-align: middle;
+    }
+    .avatar {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6C63FF, #a78bfa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .875rem;
+      flex-shrink: 0;
+    }
+    .name-cell { display: flex; align-items: center; gap: .75rem; }
+    .name-cell .name { font-weight: 600; }
+    .name-cell .email { font-size: .8rem; color: var(--muted); }
+    .badge {
+      display: inline-block;
+      padding: .2rem .6rem;
+      background: rgba(108,99,255,.15);
+      border-radius: 6px;
+      font-size: .75rem;
+      color: #a78bfa;
+    }
+    .message-cell {
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--muted);
+    }
+    .empty {
+      text-align: center;
+      padding: 4rem;
+      color: var(--muted);
+    }
+    .empty .icon { font-size: 3rem; margin-bottom: 1rem; }
+    .empty p { font-size: 1rem; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 1.25rem; }
+      .stats { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">LeadBot</div>
+    <nav class="sidebar-nav">
+      <a href="/leads" class="nav-item active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        All Leads
+      </a>
+      <a href="/" class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Live Site
+      </a>
+    </nav>
+    <a href="/leads/logout" class="logout">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Logout
+    </a>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="page-header">
+      <div>
+        <h1>Leads</h1>
+        <p>{{ business_name }} — all captured contacts</p>
+      </div>
+      <a href="/leads/export" class="btn-export">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export CSV
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-label">Total Leads</div>
+        <div class="stat-value purple">{{ leads | length }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">With Phone</div>
+        <div class="stat-value">{{ leads | selectattr('phone') | list | length }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Latest</div>
+        <div class="stat-value" style="font-size:1rem; padding-top:.5rem;">
+          {% if leads %}
+            {{ leads[0].timestamp[:10] }}
+          {% else %}
+            —
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search by name, email, or message..." oninput="filterLeads()" />
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      {% if leads %}
+      <table id="leadsTable">
+        <thead>
+          <tr>
+            <th>Contact</th>
+            <th>Phone</th>
+            <th>First Message</th>
+            <th>Captured</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for lead in leads %}
+          <tr data-search="{{ (lead.name ~ ' ' ~ lead.email ~ ' ' ~ lead.message) | lower }}">
+            <td>
+              <div class="name-cell">
+                <div class="avatar">{{ lead.name[0].upper() if lead.name else '?' }}</div>
+                <div>
+                  <div class="name">{{ lead.name }}</div>
+                  <div class="email">{{ lead.email }}</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              {% if lead.phone %}
+                <span class="badge">{{ lead.phone }}</span>
+              {% else %}
+                <span style="color: var(--muted);">—</span>
+              {% endif %}
+            </td>
+            <td class="message-cell" title="{{ lead.message }}">
+              {{ lead.message if lead.message else '—' }}
+            </td>
+            <td style="color: var(--muted); font-size: .8rem; white-space: nowrap;">
+              {{ lead.timestamp[:16].replace('T', ' ') }} UTC
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <div class="empty">
+        <div class="icon">&#128101;</div>
+        <p>No leads yet. Share your chatbot link to start capturing contacts.</p>
+      </div>
+      {% endif %}
+    </div>
+  </main>
+</div>
+
+<script>
+  function filterLeads() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('#leadsTable tbody tr').forEach(row => {
+      row.style.display = row.dataset.search.includes(q) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

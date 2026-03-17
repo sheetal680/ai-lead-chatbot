@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Login</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #6C63FF;
+      --bg: #0d0d1a;
+      --surface: #1a1a2e;
+      --text: #e8e8f0;
+      --muted: #8888aa;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(108,99,255,.2);
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 0 60px rgba(108,99,255,.1);
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6C63FF, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .5rem;
+    }
+    h2 { font-size: 1.1rem; color: var(--muted); font-weight: 400; margin-bottom: 2rem; }
+    label { display: block; font-size: .85rem; color: var(--muted); margin-bottom: .4rem; }
+    input[type="password"] {
+      width: 100%;
+      padding: .8rem 1rem;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(108,99,255,.2);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+    input[type="password"]:focus { border-color: var(--purple); }
+    .btn {
+      width: 100%;
+      margin-top: 1.25rem;
+      padding: .85rem;
+      background: linear-gradient(135deg, #6C63FF, #574fd6);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+    .btn:hover { opacity: .9; }
+    .error {
+      margin-top: 1rem;
+      padding: .75rem 1rem;
+      background: rgba(255,80,80,.1);
+      border: 1px solid rgba(255,80,80,.3);
+      border-radius: 8px;
+      font-size: .875rem;
+      color: #ff8080;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">LeadBot</div>
+    <h2>Leads Dashboard</h2>
+    <form method="POST">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter dashboard password" autofocus />
+      <button type="submit" class="btn">Sign In</button>
+      {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %}
+    </form>
+  </div>
+</body>
+</html>

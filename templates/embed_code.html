@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Embed Code — {{ business_name }}</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: #0d0d1a;
+      color: #e8e8f0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .card {
+      background: #1a1a2e;
+      border: 1px solid rgba(108,99,255,.25);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 680px;
+      width: 100%;
+      box-shadow: 0 24px 80px rgba(0,0,0,.5);
+    }
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #6C63FF, #574fd6);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .25rem .75rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 1.6rem; font-weight: 800; margin-bottom: .5rem; }
+    .subtitle { color: #8888aa; font-size: .9rem; line-height: 1.6; margin-bottom: 2rem; }
+    h2 { font-size: .85rem; font-weight: 700; color: #8888aa; text-transform: uppercase;
+         letter-spacing: .08em; margin-bottom: .65rem; }
+    .code-block {
+      position: relative;
+      background: #0d0d1a;
+      border: 1px solid rgba(108,99,255,.2);
+      border-radius: 12px;
+      padding: 1.25rem 1rem;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: .82rem;
+      line-height: 1.7;
+      color: #a78bfa;
+      white-space: pre;
+      overflow-x: auto;
+      margin-bottom: .75rem;
+    }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: linear-gradient(135deg, #6C63FF, #574fd6);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: .6rem 1.25rem;
+      font-size: .875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .2s, transform .1s;
+      box-shadow: 0 4px 15px rgba(108,99,255,.3);
+    }
+    .copy-btn:hover { opacity: .9; }
+    .copy-btn:active { transform: scale(.97); }
+    .copy-btn.copied { background: linear-gradient(135deg, #2ecc71, #27ae60); }
+    .divider { border: none; border-top: 1px solid rgba(108,99,255,.12); margin: 2rem 0; }
+    .steps { list-style: none; display: flex; flex-direction: column; gap: .9rem; }
+    .steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+      font-size: .88rem;
+      color: #c8c8e0;
+      line-height: 1.55;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #6C63FF, #574fd6);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: .05rem;
+    }
+    code {
+      background: rgba(108,99,255,.12);
+      color: #a78bfa;
+      padding: .1rem .35rem;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: .85em;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: #6C63FF;
+      font-size: .85rem;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .back-link:hover { opacity: .75; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">Embed Code</div>
+    <h1>Add the chat widget to your site</h1>
+    <p class="subtitle">
+      Paste the snippet below into any HTML page — just before the closing
+      <code>&lt;/body&gt;</code> tag. No build tools or dependencies needed.
+    </p>
+
+    <h2>Your snippet</h2>
+    <div class="code-block" id="snippet">{{ snippet }}</div>
+    <button class="copy-btn" id="copy-btn" onclick="copySnippet()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+      Copy to clipboard
+    </button>
+
+    <hr class="divider" />
+
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li>
+        <span class="step-num">1</span>
+        Copy the snippet above and paste it into any webpage's HTML, just before
+        <code>&lt;/body&gt;</code>.
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        The widget loads instantly — no extra CSS files or dependencies are fetched
+        from your server. Everything is self-contained.
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        Visitors can chat with your AI assistant. After
+        <code>data-lead-threshold</code> messages, their contact details are
+        captured and saved to your <a href="/leads" style="color:#6C63FF">leads dashboard</a>.
+      </li>
+      <li>
+        <span class="step-num">4</span>
+        Optionally override <code>data-name</code> to change the display name, or
+        set <code>data-lead-threshold</code> to control when the lead form appears.
+      </li>
+    </ol>
+
+    <a class="back-link" href="/">← Back to demo</a>
+  </div>
+
+  <script>
+    function copySnippet() {
+      const text = document.getElementById('snippet').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.classList.add('copied');
+        btn.innerHTML = `
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Copied!`;
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = `
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            Copy to clipboard`;
+        }, 2500);
+      });
+    }
+  </script>
+</body>
+</html>

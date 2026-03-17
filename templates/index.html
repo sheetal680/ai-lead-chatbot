@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ business_name }} — AI Assistant</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #6C63FF;
+      --purple-dark: #574fd6;
+      --bg: #0d0d1a;
+      --surface: #1a1a2e;
+      --surface2: #16213e;
+      --text: #e8e8f0;
+      --muted: #8888aa;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Nav */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2.5rem;
+      border-bottom: 1px solid rgba(108,99,255,.15);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,13,26,.8);
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6C63FF, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9rem;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      gap: 1.5rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: .35rem 1rem;
+      background: rgba(108,99,255,.15);
+      border: 1px solid rgba(108,99,255,.3);
+      border-radius: 999px;
+      font-size: .8rem;
+      color: #a78bfa;
+      letter-spacing: .05em;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 700px;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, #6C63FF, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .85rem 2rem;
+      background: linear-gradient(135deg, #6C63FF, #574fd6);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 0 30px rgba(108,99,255,.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 45px rgba(108,99,255,.55);
+    }
+
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(108,99,255,.12);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: transform .2s, border-color .2s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(108,99,255,.35); }
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: .75rem;
+    }
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+    }
+    .card p {
+      font-size: .875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* CTA banner */
+    .cta {
+      background: linear-gradient(135deg, rgba(108,99,255,.15), rgba(87,79,214,.08));
+      border: 1px solid rgba(108,99,255,.2);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 6rem;
+    }
+    .cta h2 { font-size: 1.75rem; font-weight: 800; margin-bottom: .75rem; }
+    .cta p { color: var(--muted); margin-bottom: 1.5rem; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(108,99,255,.1);
+      color: var(--muted);
+      font-size: .8rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">{{ business_name }}</span>
+  <a href="/leads">Dashboard</a>
+</nav>
+
+<section class="hero">
+  <span class="badge">Powered by AI</span>
+  <h1>Your 24/7 <span>AI Assistant</span> is Ready to Help</h1>
+  <p>Ask us anything about our services. Our intelligent assistant is here around the clock to answer questions and help you get started.</p>
+  <button class="btn-primary" onclick="window.__chatWidget && window.__chatWidget.open()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Chat With Us
+  </button>
+</section>
+
+<section class="features">
+  <div class="card">
+    <div class="card-icon">&#9889;</div>
+    <h3>Instant Answers</h3>
+    <p>Get immediate, accurate responses to your questions — no waiting, no hold music.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">&#128274;</div>
+    <h3>Always Available</h3>
+    <p>Our AI assistant works 24/7, 365 days a year, even when the team is offline.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">&#127775;</div>
+    <h3>Smart & Personalized</h3>
+    <p>Tailored responses based on your specific questions and our business expertise.</p>
+  </div>
+  <div class="card">
+    <div class="card-icon">&#128241;</div>
+    <h3>Seamless Handoff</h3>
+    <p>Automatically routes you to the right team member when you need human support.</p>
+  </div>
+</section>
+
+<section style="padding: 0 1.5rem;">
+  <div class="cta">
+    <h2>Ready to get started?</h2>
+    <p>Click the chat bubble in the bottom-right corner and introduce yourself. We'll take it from there.</p>
+    <button class="btn-primary" onclick="window.__chatWidget && window.__chatWidget.open()">Start a Conversation</button>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 {{ business_name }}. All rights reserved.
+</footer>
+
+<!-- Chat Widget -->
+<link rel="stylesheet" href="/static/widget.css" />
+<script>
+  window.ChatWidgetConfig = {
+    apiBase: window.location.origin,
+    businessName: "{{ business_name }}"
+  };
+</script>
+<script src="/static/widget.js"></script>
+
+</body>
+</html>

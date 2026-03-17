@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Website — LeadBot Embed Demo</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+    }
+    /* A mock client website in light mode */
+    header {
+      background: #fff;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid #e5e5e5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .client-logo { font-size: 1.3rem; font-weight: 800; color: #1a1a1a; }
+    nav a {
+      margin-left: 1.5rem;
+      color: #555;
+      text-decoration: none;
+      font-size: .9rem;
+    }
+    nav a:hover { color: #6C63FF; }
+
+    .hero {
+      text-align: center;
+      padding: 6rem 1.5rem;
+      background: linear-gradient(160deg, #f0efff 0%, #fff 60%);
+    }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; color: #1a1a1a; }
+    .hero h1 span { color: #6C63FF; }
+    .hero p { color: #666; margin: 1rem 0 2rem; font-size: 1.1rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .btn {
+      display: inline-block;
+      padding: .85rem 2rem;
+      background: #6C63FF;
+      color: #fff;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+    .feature-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid #e5e5e5;
+    }
+    .feature-card h3 { font-size: 1rem; margin: .75rem 0 .4rem; }
+    .feature-card p { font-size: .875rem; color: #888; line-height: 1.6; }
+    .icon { font-size: 2rem; }
+
+    /* Embed code box */
+    .embed-demo {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+    .embed-demo h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: .5rem; }
+    .embed-demo p { font-size: .875rem; color: #666; margin-bottom: 1rem; }
+    pre {
+      background: #0d0d1a;
+      color: #a78bfa;
+      padding: 1.25rem;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-size: .85rem;
+      line-height: 1.6;
+    }
+    code { font-family: 'Cascadia Code', 'Fira Code', monospace; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #e5e5e5;
+      color: #aaa;
+      font-size: .8rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="client-logo">Acme Corp</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">Pricing</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Welcome to <span>Acme Corp</span></h1>
+  <p>This is a demo of a client's existing website — notice the LeadBot chat bubble in the bottom-right corner.</p>
+  <a href="#" class="btn">Get Started</a>
+</section>
+
+<section class="features">
+  <div class="feature-card">
+    <div class="icon">&#128640;</div>
+    <h3>Fast Delivery</h3>
+    <p>We ship products and services faster than anyone in the industry.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">&#128275;</div>
+    <h3>Secure & Reliable</h3>
+    <p>Enterprise-grade security built into every product we offer.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">&#127775;</div>
+    <h3>Award Winning</h3>
+    <p>Recognized globally for excellence in customer satisfaction.</p>
+  </div>
+</section>
+
+<!-- How to embed section -->
+<section style="padding: 0 1.5rem;">
+  <div class="embed-demo">
+    <h2>How to embed on any website</h2>
+    <p>Paste these two lines before the <code>&lt;/body&gt;</code> tag on your site. That's it — the chatbot appears instantly.</p>
+    <pre><code>&lt;!-- LeadBot Chat Widget --&gt;
+&lt;script&gt;
+  window.ChatWidgetConfig = {
+    apiBase: "https://your-leadbot-domain.com",
+    businessName: "Acme Corp"
+  };
+&lt;/script&gt;
+&lt;script src="https://your-leadbot-domain.com/static/widget.js"&gt;&lt;/script&gt;</code></pre>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Acme Corp. All rights reserved. &nbsp;|&nbsp; Chatbot powered by LeadBot AI.
+</footer>
+
+<!--
+  ============================================================
+  LEADBOT EMBED — Replace the URLs below with your actual domain
+  ============================================================
+-->
+<script>
+  window.ChatWidgetConfig = {
+    apiBase: 'http://localhost:5000',   // change to your deployed URL
+    businessName: 'Acme Corp'
+  };
+</script>
+<script src="http://localhost:5000/static/widget.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+[
+  {
+    "question": "How do I book an appointment?",
+    "answer": "You can book an appointment by calling us at (555) 842-7700, using the 'Book Now' button on our website, or simply asking me to have someone reach out to you. We typically confirm appointments within 2 hours during business hours."
+  },
+  {
+    "question": "What are your office hours?",
+    "answer": "We're open Monday through Friday 8am–6pm, Saturday 9am–3pm, and closed on Sundays. We also offer early morning appointments starting at 7am on Tuesdays and Thursdays for patients who need to come in before work."
+  },
+  {
+    "question": "Where are you located?",
+    "answer": "SmileBright Dental is located at 4820 Lakeview Boulevard, Suite 101, Austin, TX 78704. We're in the Lakeview Medical Plaza — there's free parking in the lot directly in front of the building."
+  },
+  {
+    "question": "What dental services do you offer?",
+    "answer": "We offer a full range of general and cosmetic dentistry including routine cleanings, teeth whitening, Invisalign and traditional braces, dental implants, crowns, veneers, fillings, root canals, and emergency dental care. We handle everything from preventive checkups to full smile makeovers."
+  },
+  {
+    "question": "How much does a routine cleaning and exam cost?",
+    "answer": "A routine cleaning and comprehensive exam is $150–$200 without insurance. This includes X-rays if needed. Most insurance plans cover preventive cleanings at 100%, so many of our patients pay nothing out of pocket for their biannual visits."
+  },
+  {
+    "question": "What does teeth whitening cost?",
+    "answer": "Our in-office professional whitening treatment is $350–$450 and delivers results in about 90 minutes. We also offer custom take-home whitening trays for $200–$250. Both options can lighten teeth by 6–10 shades. We always do a quick assessment first to make sure whitening is right for you."
+  },
+  {
+    "question": "How much do dental implants cost?",
+    "answer": "A single dental implant typically ranges from $3,000–$5,000, which includes the implant post, abutment, and crown. The final cost depends on whether a bone graft or extraction is needed beforehand. We offer flexible financing through CareCredit with 0% interest plans for 12–24 months."
+  },
+  {
+    "question": "Do you offer braces or Invisalign?",
+    "answer": "Yes — we offer both traditional metal braces and Invisalign clear aligners. Traditional braces range from $3,500–$5,500 and Invisalign ranges from $4,000–$6,500 depending on the complexity of your case. Treatment typically takes 12–24 months, and we provide a free orthodontic consultation to find the best fit for you."
+  },
+  {
+    "question": "What insurance plans do you accept?",
+    "answer": "We're in-network with Delta Dental, Cigna, Aetna, MetLife, BlueCross BlueShield, and United Concordia. We also accept most PPO plans as an out-of-network provider and will file claims on your behalf. Our front desk team can run a free benefits check before your appointment."
+  },
+  {
+    "question": "Do you offer payment plans or financing?",
+    "answer": "Absolutely. We accept CareCredit and Sunbit, both offering 0% interest financing from 6 to 24 months. We also offer the SmileBright Membership Plan for patients without insurance — $299/year covers two cleanings, annual X-rays, and a 15% discount on all other treatments."
+  },
+  {
+    "question": "What should I do if I have a dental emergency?",
+    "answer": "Call our emergency line immediately at (555) 842-7711 — available 24/7. For severe pain, a knocked-out tooth, or a broken crown, we reserve same-day slots for emergencies. If a tooth is knocked out, keep it moist (in milk or between your cheek and gum) and get to us within an hour for the best chance of saving it."
+  },
+  {
+    "question": "Are you accepting new patients?",
+    "answer": "Yes, we're actively welcoming new patients! New patients receive a comprehensive exam, full-mouth X-rays, and a personalized treatment plan for a special rate of $99 (regularly $250). We also include a complimentary cosmetic consultation if you're interested in whitening or smile improvements."
+  },
+  {
+    "question": "Do you treat children?",
+    "answer": "Yes, we see patients of all ages starting from age 3. We have a kid-friendly treatment room with TVs on the ceiling and a treasure chest reward after every visit. We recommend a child's first appointment around their first birthday or when their first tooth appears."
+  },
+  {
+    "question": "How often should I get a dental checkup?",
+    "answer": "We recommend a professional cleaning and exam every 6 months for most patients. Those with gum disease, a higher cavity risk, or conditions like diabetes may benefit from visits every 3–4 months. We'll recommend the right schedule for you after your initial exam."
+  },
+  {
+    "question": "What safety and hygiene measures do you follow?",
+    "answer": "We follow all CDC and ADA infection control guidelines. All instruments are sterilized between every patient, treatment rooms are fully sanitized after each appointment, and our team wears appropriate PPE at all times. We also use hospital-grade HEPA air purifiers in every room."
+  }
+]
